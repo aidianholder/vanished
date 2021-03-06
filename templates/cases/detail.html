@@ -1,0 +1,177 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <!-- Compiled and minified CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        <link rel="stylesheet" href="https://use.typekit.net/lpb6ggv.css">
+        <style>
+            #nav-content-wrapper {max-width: 1396px; margin: 0 auto;}
+            .brand-logo {max-width: 200px;}
+            .nav-wrapper {
+                background: linear-gradient(#fff 0%, #b71c1c 10%, #9b0303 45%, #9b0303 47%, #b71c1c 90%)
+
+            }
+
+
+            p, h2, h2, h3, h4, h5, h6 {font-family: mencken-std-text, sans-serif;}
+            body {font-size: 16px; line-height: 22px;}
+            .block-content-discovery article {
+                padding: 15px;
+                border: 1px solid rgba(0,0,0,.1);
+                border-width: 0 0 1px 0;
+            }
+
+            .asset-body .asset-content {max-width: 750px; margin: 0 auto;}
+
+            .asset-body .asset-content h3 {font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;}
+
+            .asset-body p a {
+                color: #428bca;
+                }
+
+            .asset-masthead .asset-header h1 {font-weight: 700;}
+            h1.victim_name {font-weight: 600; margin-top: 10px; font-size: 2rem;}
+            .missing p {text-align: center; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif}
+            h5 {font-size:1.2rem; font-weight: 600;}
+        </style>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+    <div class="navbar-fixed">
+        <nav>
+            <div class="nav-wrapper">
+                <div id="nav-content-wrapper">
+                <a href="#" class="brand-logo"><img class="responsive-img" src="https://www.yakimaherald.com/tncms/media/vanished_logo_white"/></a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li><a href="#">Cases</a></li>
+                    <li><a href="#">Stories</a></li>
+                    <li><a href="#">Resources</a></li>
+                </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col s12 col l8 offset-l2">
+                    <div class="card-panel">
+                        {% if victim %}
+                            <h6>{{ victim.classification }}</h6>
+                            <h1 class="victim_name">{{ victim.first_name }} {% if victim.middle_name %}{{ victim.middle_name }}{% endif %} {{ victim.last_name }}</h1>
+
+                            {%  if victim.photo %}
+                                <img class="responsive-img" src="{{ victim.photo.url }}"/>
+                            {% endif %}
+
+                            <div class="row missing">
+                                {% if victim.missing_since %}
+                                <div class="col s6">
+                                    <p>Missing Since:<br/> {{ victim.missing_since }}</p>
+                                </div>
+                                {% endif %}
+                                {% if victim.missing_from %}
+                                <div class="col s6">
+                                    <p>Missing From:<br/> {{ victim.missing_from }}</p>
+                                </div>
+                                {% endif %}
+                            </div>
+
+                            {% if victim.narrative %}
+                                <h5>Narrative</h5>
+                                <p>{{ victim.narrative }}</p>
+                            {% endif %}
+
+                            {% if victim.description %}<div class="divider"></div>
+                                <h5>Description</h5>
+                                <p>{{ victim.description }}</p>
+                            {%  endif %}
+
+                            {% if victim.enrolled == "True" %}
+                                <p>Member of {{ victim.tribe }}</p>
+                            {% endif %}
+
+                            {% if victim.agency %}<div class="divider"></div>
+                                <h5>Responsible Agency</h5>
+                                <p>{{ victim.agency }}</p>
+                            {% endif %}
+
+                        {% endif %}
+
+
+
+                    </div>
+
+
+                </div>
+            </div>
+        {% if articles %}
+        <div class="row">
+                <div class="col s12 col l8 offset-l2">
+                    <div class="card-panel">
+                    <h5>Related Stories</h5>
+                        <ul>
+                        {%  for article in articles %}
+                            <li><a href="{{ article.url }}">{{ article.hed }}</a></li>
+                        {% endfor %}
+                        </ul>
+                    </div>
+
+
+            </div>
+        </div>
+        {% endif %}
+    </div>
+{% if markers %}
+<script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.45.0/mapbox-gl.js"></script>
+<link href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.45.0/mapbox-gl.css" rel="stylesheet">
+
+    <style>
+        body { margin:0; padding:0; }
+        #map {width:100%; height: 480px; }
+         .mapboxgl-popup {
+            max-width: 10rem;
+            font: 10px/16px 'Helvetica Neue', Arial, sans-serif;
+         }
+    </style>
+
+    <div id="map" class="mapboxgl-js"></div>
+
+    <script>
+
+    let bounds = [[-124.438, 45.375][-116.563, 49.24]]
+    let map;
+    map = new mapboxgl.Map({
+        container: 'map',
+        style: 'https://aidianholder.com/mapserver/osm-liberty.json',
+        center: ["{{ markers.0.lon }}", "{{ markers.0.lat }}"],
+        zoom: 6
+
+    });
+
+    map.on('load', function(){
+        {% for marker in markers %}
+            let popup{{ forloop.counter }} = new mapboxgl.Popup({
+                closeButton: false,
+                closeOnClick: false})
+                .setLngLat([  {{ marker.lon }}   ,  {{ marker.lat }}  ])
+                .setHTML( "{{ marker.loc_description }}" )
+
+            let marker{{ forloop.counter }} = new mapboxgl.Marker()
+                .setLngLat([  {{ marker.lon }}   ,  {{ marker.lat }}  ])
+                .addTo(map);
+        {% endfor %}
+
+    map.ScrollZoom.disable();
+    map.addControl(new mapboxgl.NavigationControl());
+    });
+
+</script>
+{% endif %}
