@@ -23,9 +23,11 @@
                                             </div>
                                      {% endif %}
                                    </div>
+                                    {% if victim.photo %}
                                     <div class="item">
                                         <img class="responsive-img thumb z-depth-2" src="{{ victim.photo.url }}"/>
                                     </div>
+                                    {% endif %}
                      </div>
                 </div>
         {% endfor %}
