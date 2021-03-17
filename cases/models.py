@@ -48,6 +48,11 @@ class Story(models.Model):
         return self.hed
 
 
+#class Subject(models.Model):
+#    missing = models.ForeignKey(Vanished, on_delete=models.CASCADE)
+#    info = models.ForeignKey(Story, on_delete=models.CASCADE)
+#
+#
 class Point(models.Model):
     lat = models.FloatField("latitude")
     lon = models.FloatField("longitude")
