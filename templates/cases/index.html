@@ -1,80 +1,6 @@
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <!-- Compiled and minified CSS -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-        <link rel="stylesheet" href="https://use.typekit.net/lpb6ggv.css">
-        <style>
-            #nav-content-wrapper {max-width: 1396px; margin: 0 auto;}
-            .brand-logo {max-width: 200px;}
-            .nav-wrapper {
-                background: linear-gradient(#fff 0%, #b71c1c 10%, #9b0303 45%, #9b0303 47%, #b71c1c 90%);
-            }
-            body {background-color: #f2f2f2; }
+{% extends "base.html" %}
 
-            p, h2, h2, h3, h4, h5, h6 {font-family: mencken-std-text, sans-serif;}
-            body {font-size: 16px; line-height: 22px;}
-            .block-content-discovery article {
-                padding: 15px;
-                border: 1px solid rgba(0,0,0,.1);
-                border-width: 0 0 1px 0;
-            }
-
-            .asset-body .asset-content {max-width: 750px; margin: 0 auto;}
-
-            .asset-body .asset-content h3 {font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;}
-
-            .asset-body p a {
-                color: #428bca;
-                }
-
-            .asset-masthead .asset-header h1 {font-weight: 700;}
-            h1.victim_name {font-weight: 600; margin-top: 10px; font-size: 2rem;}
-            .missing p {text-align: center; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif}
-            h5 {font-size:1.2rem; font-weight: 600;}
-
-            .card.horizontal {
-                flex-direction: row;
-                justify-content: space-between;
-                align-items: center;
-                padding:10px;
-
-            }
-
-
-            h2.victim_list {font-size: 1.4rem; font-weight: 500; margin-top: 0.5rem; margin-bottom: 0.5rem; color: #b71c1c;}
-            img.thumb {max-width:75px; max-height: 75px;}
-            h6 {font-size:1rem;}
-            h6.vanished_date {margin-top: -5px;font-size:0.8rem;}
-
-
-        </style>
-    </head>
-    <body>
-        <!--[if lt IE 7]>
-            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
-    <div class="navbar-fixed">
-        <nav>
-            <div class="nav-wrapper">
-                <div id="nav-content-wrapper">
-                <a href="#" class="brand-logo"><img class="responsive-img" src="https://www.yakimaherald.com/tncms/media/vanished_logo_white"/></a>
-                <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li><a href="#">Cases</a></li>
-                    <li><a href="#">Stories</a></li>
-                    <li><a href="#">Resources</a></li>
-                </ul>
-                </div>
-            </div>
-        </nav>
-    </div>
-
-
+{% block main_content %}
 {% if mmiw %}
     <div class="container">
         <div class="row">
@@ -86,7 +12,7 @@
 
                                    <div class="item">
                                         <h6>{{ victim.classification }}</h6>
-                                        <a href="/cases/{{ victim.id }}/"><h2 class="victim_list">{{ victim.first_name }} {{ victim.last_name }}</h2></a>
+                                        <a href="{% url 'detail' victim.id %}"><h2 class="victim_list">{{ victim.first_name }} {{ victim.last_name }}</h2></a>
 
                                      {% if victim.missing_since %}
                                             <div>
@@ -98,15 +24,12 @@
                                      {% endif %}
                                    </div>
                                     <div class="item">
-                                        <img class="img-responsive thumb z-depth-2" src="{{ victim.photo.url }}"/>
+                                        <img class="responsive-img thumb z-depth-2" src="{{ victim.photo.url }}"/>
                                     </div>
-
-
-
-
                      </div>
                 </div>
         {% endfor %}
         </div>
     </div>
 {% endif %}
+{% endblock %}

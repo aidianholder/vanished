@@ -38,11 +38,27 @@
 
             p, h2, h2, h3, h4, h5, h6 {font-family: mencken-std-text, sans-serif;}
             body {font-size: 16px; line-height: 22px;}
+            h2.victim_list {font-size: 1.4em;}
 
             h1.victim_name {font-weight: 600; margin-top: 10px; font-size: 2rem;}
             .missing p {text-align: center; font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;}
             h5 {font-size:1.2rem; font-weight: 600;}
             .sidenav-overlay {z-index: 900!important;}
+
+            .card.horizontal {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                padding:10px;
+
+            }
+
+
+            h2.victim_list {font-size: 1.4rem; font-weight: 500; margin-top: 0.5rem; margin-bottom: 0.5rem; color: #b71c1c;}
+            img.thumb {max-width:75px; max-height: 75px;}
+            h6 {font-size:1rem;}
+            h6.vanished_date {margin-top: -5px;font-size:0.8rem;}
+
         </style>
 
 
@@ -57,7 +73,7 @@
                      </a>
                     <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                     <ul id="nav-mobile" class="right hide-on-med-and-down">
-                        <li><a href="cases">Cases</a></li>
+                        <li><a href= "{% url 'index' %}">Cases</a></li>
                         <li><a href="https://www.yakimaherald.com/thevanished">Stories</a></li>
                         <li><a href="#">Resources</a></li>
                     </ul>
@@ -67,7 +83,7 @@
 
         <ul id="mobile-demo" class="sidenav">
             <li><img  class="responsive-img" src="https://www.yakimaherald.com/tncms/media/thevanished_eng1/" /></li>
-            <li><a class="waves-effect" href="cases">Cases</a></li>
+            <li><a class="waves-effect" href="{% url 'index' %}">Cases</a></li>
             <li><a class="waves-effect" href="https://www.yakimaherald.com/thevanished">Stories</a></li>
             <li><a class="waves-effect" href="#">Resources</a></li>
         </ul>
@@ -75,62 +91,16 @@
 
     </div>
 
-    <div class="grey lighten-4">
-
-        <div class="row hero-unit">
-            <div class="col s12 m8 offset-m2">
-                <p><strong>Dozens of women have vanished in and around the Yakama reservation.</strong>  Sometimes, they just disappear.  Sometimes, they're found dead months or years latter. Rarely is anyone held to account.</p>
-
-            </div>
-        </div>
-    </div>
-
-    <div id="vanished-main-menu">
-
-        <div class="row">
-             <a href="cases">
-                <div class="col m2 offset-m2 s4">
-                 `  <img class="responsive-img" src="https://www.yakimaherald.com/tncms/media/mmiw_poster_button/">
-                </div>
-                 <div class="col m6 s8">
-                        <h3>Cases</h3>
-                        <p>Dozens of cases of missing and murdered indigenous women in and around the Yakama reservation.  Many are decades old.  Most are still unsolved.</p>
-                </div>
-             </a>
-        </div>
-
-        <div class="row">
-            <a href="https://www.yakimaherald.com/thevanished">
-                <div class="col m2 offset-m2 s4">
-                    <img class="responsive-img" src="https://www.yakimaherald.com/tncms/media/stolen_sisters_button">
-                </div>
-                <div class="col m6 s8">
-                    <h3>Stories</h3>
-                   <p>Every one of the stories we've done cataloging the epidimic of violence against native women, and the efforts to end it.</p>
-                </div>
-            </a>
-        </div>
-
-        <div class="row">
-            <a href="#">
-                <div class="col m2 offset-m2 s4">
-                    <img  class="responsive-img" src="https://www.yakimaherald.com/tncms/media/mmiw_hand_button_redux/" class="mmiw-button">
-                </div>
-                <div class="col m6 s8">
-                    <h3>Resources</h3>
-                    <p>What you should know.  What you can do.  How you can reach out.  And what to do if this epidimic touches your family.</p>
-                </div>
-            </a>
-        </div>
-
-    </div>
+    {% block main_content %}{% endblock %}
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-        var elems = document.querySelectorAll('.sidenav');
-        var instances = M.Sidenav.init(elems);
-        });
-    </script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.sidenav');
+    var instances = M.Sidenav.init(elems);
+
+  });
+
+</script>
 </body>
 </html>
