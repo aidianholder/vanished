@@ -30,7 +30,8 @@
             .nav-wrapper {
                 background: linear-gradient(#fff 0%, #b71c1c 10%, #9b0303 45%, #9b0303 47%, #b71c1c 90%);
             }
-            .hero-unit {padding: 1em; }
+	    .page-footer {background: #b71c1c;}
+            .hero-unit {padding: 1em; margin-top: -20px;}
             .hero-unit p {text-align: center; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;}
             .hero-unit p strong {font-size: 1.2em; font-weight: 600; line-height: 1.2em;}
 
@@ -40,15 +41,25 @@
             body {font-size: 16px; line-height: 22px;}
 
             h1.victim_name {font-weight: 600; margin-top: 10px; font-size: 2rem;}
-            .missing p {text-align: center; font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;}
+            .page-footer p.attribution, .missing p {text-align: center; font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;}
             h5 {font-size:1.2rem; font-weight: 600;}
             .sidenav-overlay {z-index: 900!important;}
-        </style>
+		body {display:flex; min-height: 100vh; flex-direction:column;}
+		main {flex: 1 0 auto;}
+
+		.yhr-branding {color:#b71c1c; text-align:left; margin-top:0;}
+		.yhr-branding a {color:#b71c1c;}
+	@media (max-width: 992px){
+	
+		.yhr-branding {text-align:center;}
+	}
+
+	</style>
 
 
     </head>
 <body>
-    <div class="navbar-fixed">
+    <header class="navbar-fixed">
         <nav>
             <div class="nav-wrapper">
                 <div id="nav-content-wrapper">
@@ -59,8 +70,9 @@
                     <ul id="nav-mobile" class="right hide-on-med-and-down">
                         <li><a href="cases">Cases</a></li>
                         <li><a href="https://www.yakimaherald.com/thevanished">Stories</a></li>
-                        <li><a href="#">Resources</a></li>
-                    </ul>
+                        <li><a href="resources">Resources</a></li>
+			<li><a href="about">About</a></li>
+		    </ul>
                 </div>
             </div>
         </nav>
@@ -69,16 +81,17 @@
             <li><img  class="responsive-img" src="https://www.yakimaherald.com/tncms/media/thevanished_eng1/" /></li>
             <li><a class="waves-effect" href="cases">Cases</a></li>
             <li><a class="waves-effect" href="https://www.yakimaherald.com/thevanished">Stories</a></li>
-            <li><a class="waves-effect" href="#">Resources</a></li>
+            <li><a class="waves-effect" href="resources">Resources</a></li>
+	    <li><a class="waves-effect" href="about">About</a></li>
         </ul>
 
 
-    </div>
-
+    </header>
+	<main>
     <div class="grey lighten-4">
-
+	    <h5 class="yhr-branding"><span>  A project of the</spane><a href="https://yakimaherald.com"> Yakima Herald-Republic</a></h5>
         <div class="row hero-unit">
-            <div class="col s12 m8 offset-m2">
+            <div class="col s12 m8 offset-m2 l6 offset-l3">
                 <p><strong>Dozens of women have vanished in and around the Yakama reservation.</strong>  Sometimes, they just disappear.  Sometimes, they're found dead months or years latter. Rarely is anyone held to account.</p>
 
             </div>
@@ -90,7 +103,7 @@
         <div class="row">
              <a href="cases">
                 <div class="col m2 offset-m2 s4">
-                 `  <img class="responsive-img" src="https://www.yakimaherald.com/tncms/media/mmiw_poster_button/">
+                	<img class="responsive-img" src="https://www.yakimaherald.com/tncms/media/mmiw_poster_button/">
                 </div>
                  <div class="col m6 s8">
                         <h3>Cases</h3>
@@ -112,7 +125,7 @@
         </div>
 
         <div class="row">
-            <a href="#">
+            <a href="resources">
                 <div class="col m2 offset-m2 s4">
                     <img  class="responsive-img" src="https://www.yakimaherald.com/tncms/media/mmiw_hand_button_redux/" class="mmiw-button">
                 </div>
@@ -124,6 +137,19 @@
         </div>
 
     </div>
+	</main>
+	<footer class="page-footer">
+		<div class="container">
+			<div class="row">
+				<div class="col s12">
+					<p class="attribution">The Vanished is a project of the Yakima Herald-Republic.</p>
+
+
+				</div>
+			</div>
+
+		<div>
+	</footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script>

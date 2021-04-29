@@ -4,7 +4,7 @@ from .models import Vanished, Story, Point
 
 
 def index(request):
-    mmiw = Vanished.objects.all()
+    mmiw = Vanished.objects.all().order_by('-missing_since')
     context = {'mmiw': mmiw}
     return render(request, 'cases/index.html', context)
 

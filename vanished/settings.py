@@ -20,12 +20,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '7=5)!0_w+*o0hv&eo70!baiu9!vvacs5gg_m(y+8_e_e)pg*xc'
+SECRET_KEY = '7=5)!0_w+*o0hv&eo70!baiu9!vvacs5gg_m(y+8_e_e)pg*xc' 
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', 'thevanished.org', 'www.thevanished.org', '45.33.47.88']
 
 
 # Application definition
@@ -79,9 +79,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'vanished',
-        'USER': 'postgres',
-        'PASSWORD': '',
-        'HOST': '127.0.0.1',
+        'USER': 'vanisheduser',
+        'PASSWORD': 'Anarchynow1',
+        'HOST': 'localhost',
         'PORT': '5432'
     }
 }
@@ -123,7 +123,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT =  os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'

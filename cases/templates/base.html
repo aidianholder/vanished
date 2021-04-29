@@ -30,18 +30,32 @@
             .nav-wrapper {
                 background: linear-gradient(#fff 0%, #b71c1c 10%, #9b0303 45%, #9b0303 47%, #b71c1c 90%);
             }
+	    .page-footer {background: #b71c1c;}
+	    .page-footer .attribution
             .hero-unit {padding: 1em; }
             .hero-unit p {text-align: center; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;}
             .hero-unit p strong {font-size: 1.2em; font-weight: 600; line-height: 1.2em;}
 
-            a {color: #000;}
+	    body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
 
+  main {
+    flex: 1 0 auto;
+  }
+
+
+            a {color: #000;}
+	    a.related_story {color: #b71c1c;}
+	    a.related_story:hover {text-decoration:underline;}
             p, h2, h2, h3, h4, h5, h6 {font-family: mencken-std-text, sans-serif;}
             body {font-size: 16px; line-height: 22px;}
             h2.victim_list {font-size: 1.4em;}
 
             h1.victim_name {font-weight: 600; margin-top: 10px; font-size: 2rem;}
-            .missing p {text-align: center; font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;}
+            .page-footer .attribution, .missing p {text-align: center; font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;}
             h5 {font-size:1.2rem; font-weight: 600;}
             .sidenav-overlay {z-index: 900!important;}
 
@@ -64,7 +78,7 @@
 
     </head>
 <body>
-    <div class="navbar-fixed">
+    <header class="navbar-fixed">
         <nav>
             <div class="nav-wrapper">
                 <div id="nav-content-wrapper">
@@ -89,10 +103,22 @@
         </ul>
 
 
-    </div>
+    </header>
+    <main>
 
     {% block main_content %}{% endblock %}
 
+
+    </main>
+    <footer class="page-footer">
+	    <div class="container">
+		<div class="row">
+			<div class="col s12>
+				<p class="attribution">The Vanished is a project of the Yakima Herald-Republic with support from Microsoft's local journalism initiative.</p>
+			</div>
+		</div>
+	    </div>
+    </footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {

@@ -7,7 +7,7 @@ CLASSIFICATION_CHOICES = [
     ('MISSING PERSON', 'Missing Person'),
     ('MYSTERIOUS DEATH', 'Mysterious Death'),
     ('UNSOLVED HOMICIDE', 'Unsolved Homicide'),
-    ('COURT', 'In Legal System'),
+    ('IN COURT', 'In Legal System'),
     ('CLOSED', 'Resolved in court system')]
 
 

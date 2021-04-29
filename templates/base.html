@@ -43,7 +43,11 @@
   main {
     flex: 1 0 auto;
   }
-            a {color: #000;}
+
+	main div.mmiw-index {display: block;}
+
+
+  	a {color: #000;}
 
             p, h2, h2, h3, h4, h5, h6 {font-family: mencken-std-text, sans-serif;}
             body {font-size: 16px; line-height: 22px;}
@@ -52,11 +56,57 @@
             .missing p, .page-footer p.attribution {text-align: center; font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;}
             h5 {font-size:1.2rem; font-weight: 600;}
             .sidenav-overlay {z-index: 900!important;}
+
+	a.related_story {color: #b71c1c;}
+            a.related_story:hover {text-decoration:underline;}
+            p, h2, h2, h3, h4, h5, h6 {font-family: mencken-std-text, sans-serif;}
+            body {font-size: 16px; line-height: 22px;}
+            h2.victim_list {font-size: 1.4em;}
+
+            h1.victim_name {font-weight: 600; margin-top: 10px; font-size: 2rem;}
+            .page-footer .attribution, .missing p {text-align: center; font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;}
+            h5 {font-size:1.2rem; font-weight: 600;}
+            .sidenav-overlay {z-index: 900!important;}
+
+            .card.horizontal {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                padding:10px;
+
+            }
+
+
+            h2.victim_list {font-size: 1.4rem; font-weight: 500; margin-top: 0.5rem; margin-bottom: 0.5rem; color: #b71c1c;}
+            img.thumb {max-width:75px; max-height: 75px;}
+            h6 {font-size:1rem;}
+            h6.vanished_date {margin-top: -5px;font-size:0.8rem;}
+		ul.resources {
+    			list-style: outside square none!important; 
+    			margin-left: 0; 
+    			padding-left: 1em;
+			background-color: #fff;
+			padding: 2em;
+			box-shadow: 0 2px 2px 0 rgb(0 0 0 / 14%), 0 3px 1px -2px rgb(0 0 0 / 12%), 0 1px 5px 0 rgb(0 0 0 / 20%);
+		}
+
+		ul.resources li {
+    			padding-left: 1em;
+			list-style: outside square none!important;
+			}
+
+		.yhr-branding {color:#b71c1c; text-align:left; margin-top:0;} 
+                .yhr-branding a {color:#b71c1c;} 
+        	@media (max-width: 992px){ 
+                	.yhr-branding {text-align:center;} 
+       		 }
+
+
         </style>
 
 
     </head>
-<body>
+    <body class="grey lighten-4">
 
     <header class="navbar-fixed">
         <nav>
@@ -67,9 +117,11 @@
                      </a>
                     <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                     <ul id="nav-mobile" class="right hide-on-med-and-down">
-                        <li><a href= "{% url 'index' %}">Cases</a></li>
+                        <li><a href= "{% url 'home' %}">Home</a></li>
+			<li><a href= "{% url 'index' %}">Cases</a></li>
                         <li><a href="https://www.yakimaherald.com/thevanished">Stories</a></li>
-                        <li><a href="#">Resources</a></li>
+			<li><a href= "{% url 'resources' %}">Resources</a></li>
+                        <li><a href= "{% url 'about' %}">About</a></li>
                     </ul>
                 </div>
             </div>
@@ -77,14 +129,19 @@
 
         <ul id="mobile-demo" class="sidenav">
             <li><img class="responsive-img" src="https://www.yakimaherald.com/tncms/media/thevanished_eng1/" /></li>
-            <li><a class="waves-effect" href="{% url 'index' %}">Cases</a></li>
+             <li><a class="waves-effect" href= "{% url 'home' %}">Home</a></li>
+	    <li><a class="waves-effect" href="{% url 'index' %}">Cases</a></li>
             <li><a class="waves-effect" href="https://www.yakimaherald.com/thevanished">Stories</a></li>
-            <li><a class="waves-effect" href="#">Resources</a></li>
+	    <li><a class="waves-effect" href="{% url 'resources' %}">Resources</a></li>
+	    <li><a class="waves-effect" href="{% url 'about' %}">About</a></li>
+
+
         </ul>
 
 
     </header>
     <main>
+	  <h5 class="yhr-branding grey lighten-4"><span>  A project of the</spane><a href="https://yakimaherald.com"> Yakima Herald-Republic</a></h5>
 
     {% block main_content %}{% endblock %}
 
@@ -94,7 +151,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col s12">
-				<p class="attribution">The Vanished is a project of the Yakima Herald-Republic with support from the Micorosoft local journalism initiative.</p>
+				<p class="attribution">The Vanished is a project of the Yakima Herald-Republic</p>
 			</div>
 		</div>
 	</div>
